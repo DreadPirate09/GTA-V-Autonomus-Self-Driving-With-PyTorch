@@ -23,7 +23,7 @@ public class SpeedLogger : Script
     {
         try
         {
-            string logPath = "C:\\Program Files\\Epic Games\\GTAV\\scripts\\VehicleSpeedLog.txt";
+            string logPath = "C:\\GitRepo1\\PyTorch-Gta-Self-Drive\\PyTorch-Explore-Models\\VehicleSpeedLog.txt";
             logFile = new StreamWriter(logPath, true); // Append to the log file
             logFile.AutoFlush = true;
         }
