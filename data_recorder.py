@@ -9,6 +9,13 @@ from PIL import Image
 import mss
 import pygame
 
+def read_last_line(file_path):
+    with open(file_path, 'rb') as f:
+        f.seek(-2, os.SEEK_END)  # Jump to the second last byte.
+        while f.read(1) != b'\n':  # Until EOL is found...
+            f.seek(-2, os.SEEK_CUR)  # ...jump back the read byte plus one more.
+        return f.readline().decode()  # Read the next line, which is the last line
+
 if not (len(sys.argv) > 2):
 	print('\nNo save path given!\n=>data_recorder.py <save-path> <speed.txt-path>')
 	sys.exit(0)
@@ -88,9 +95,7 @@ while True:
 			else:
 				print('Status: Paused')
 		
-		file = open(speed_fil_path, "r")
-		new_speed = file.read()
-		file.close()
+		new_speed = read_last_line(speed_fil_path)
 		
 		if (len(new_speed) > 0):
 			speed = new_speed
@@ -113,12 +118,13 @@ while True:
 		if (steering_angle < 0.01):
 			steering_angle=0
 			
-		throttle=joysticks[0].get_axis(2)
+		throttle=joysticks[0].get_axis(5)
 		if (throttle > 0.98):
 			throttle=1
 		throttle=1-(throttle+1)/2
 			
-		brake=joysticks[0].get_axis(3)
+		brake=joysticks[0].get_axis(4) # break and reverse
+		print(brake)
 		if (brake > 0.98):
 			brake=1
 		brake=1-(brake+1)/2

@@ -41,7 +41,7 @@ public class SpeedLogger : Script
             // Check if the player's character is in a vehicle
             if (playerPed != null && playerPed.IsInVehicle())
             {
-                logFile.WriteLine("Player in vehicle");
+                // logFile.WriteLine("Player in vehicle");
                 // Get the player's current vehicle
                 var playerVehicle = playerPed.CurrentVehicle;
                 if (playerVehicle != null && playerVehicle.Exists())
@@ -59,7 +59,7 @@ public class SpeedLogger : Script
             }
             else
             {
-                logFile.WriteLine("Player not in vehicle");
+                logFile.WriteLine("0");
             }
         }
         catch (Exception ex)
