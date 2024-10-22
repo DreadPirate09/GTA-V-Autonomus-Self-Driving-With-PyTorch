@@ -16,6 +16,7 @@ public class SpeedLogger : Script
     public SpeedLogger()
     {
         Tick += OnTick;
+        Aborted += OnAborted;  // Corrected Dispose with event handler
         SetupLogging();
     }
 
@@ -29,9 +30,7 @@ public class SpeedLogger : Script
         }
         catch (Exception ex)
         {
-            logFile.WriteLine("Some error caught: " + ex.Message);
-            UI.Notify("Error setting up logging: " + ex.Message);
-            GTA.UI.Notify("Error setting up logging: " + ex.Message);
+            GTA.UI.Notification.Show("Error setting up logging: " + ex.Message);  // Corrected Notify to Notification.Show
         }
     }
 
@@ -67,7 +66,7 @@ public class SpeedLogger : Script
         {
             logFile.WriteLine("Some error caught: " + ex.Message);
             logFile.WriteLine(ex.StackTrace);
-            GTA.UI.Notify("Some error caught: " + ex.Message);
+            GTA.UI.Notification.Show("Some error caught: " + ex.Message);  // Corrected Notify to Notification.Show
         }
     }
 
@@ -95,15 +94,11 @@ public class SpeedLogger : Script
         playerPed = Game.Player.Character;
     }
 
-    protected override void Dispose(bool disposing)
+    private void OnAborted(object sender, EventArgs e) // Corrected Dispose with event handler
     {
-        if (disposing)
+        if (logFile != null)
         {
-            if (logFile != null)
-            {
-                logFile.Close();
-            }
+            logFile.Close();
         }
-        base.Dispose(disposing);
     }
 }
