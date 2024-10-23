@@ -14,7 +14,7 @@ def read_last_line(file_path):
         f.seek(-2, os.SEEK_END)  # Jump to the second last byte.
         while f.read(1) != b'\n':  # Until EOL is found...
             f.seek(-2, os.SEEK_CUR)  # ...jump back the read byte plus one more.
-        return f.readline().decode()  # Read the next line, which is the last line
+        return f.readline().decode().strip()  # Read the next line, which is the last line
 
 if not (len(sys.argv) > 2):
 	print('\nNo save path given!\n=>data_recorder.py <save-path> <speed.txt-path>')
@@ -130,6 +130,7 @@ while True:
 		brake=1-(brake+1)/2
 					
 		path = save_path + 'img%d.bmp' % current_sample
+		print((steering_angle, throttle, brake, speed, path))
 		img.save(path, 'BMP')
 		csv_file.write('%f,%f,%f,%s,%s\n' % (steering_angle, throttle, brake, speed, path))
 			
