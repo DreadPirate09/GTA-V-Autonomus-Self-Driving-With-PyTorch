@@ -2,3 +2,4 @@ pywin32==308
 torch==2.4.1
 numpy==1.24.3
 pygame==2.6.1
+opencv-python==4.10.0.84
