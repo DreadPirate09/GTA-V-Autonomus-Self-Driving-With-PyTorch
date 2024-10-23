@@ -4,17 +4,16 @@ import win32gui, win32api
 import os
 import sys
 import PIL
-# import log_speed as speed
 from PIL import Image
 import mss
 import pygame
 
 def read_last_line(file_path):
     with open(file_path, 'rb') as f:
-        f.seek(-2, os.SEEK_END)  # Jump to the second last byte.
-        while f.read(1) != b'\n':  # Until EOL is found...
-            f.seek(-2, os.SEEK_CUR)  # ...jump back the read byte plus one more.
-        return f.readline().decode().strip()  # Read the next line, which is the last line
+        f.seek(-2, os.SEEK_END) 
+        while f.read(1) != b'\n':
+            f.seek(-2, os.SEEK_CUR)
+        return f.readline().decode().strip() 
 
 if not (len(sys.argv) > 2):
 	print('\nNo save path given!\n=>data_recorder.py <save-path> <speed.txt-path>')

@@ -6,8 +6,8 @@ using GTA.Math;
 public class SpeedLogger : Script
 {
     private StreamWriter logFile;
-    private int interval = 100; // Logging interval in milliseconds
-    private int initDelay = 5000; // Delay in milliseconds before starting logging
+    private int interval = 100; 
+    private int initDelay = 5000;
     private int elapsedTime = 0;
     private bool isInitialized = false;
     private Ped playerPed;
@@ -16,7 +16,7 @@ public class SpeedLogger : Script
     public SpeedLogger()
     {
         Tick += OnTick;
-        Aborted += OnAborted;  // Corrected Dispose with event handler
+        Aborted += OnAborted;
         SetupLogging();
     }
 
@@ -24,13 +24,13 @@ public class SpeedLogger : Script
     {
         try
         {
-            string logPath = "C:\\GitRepo1\\PyTorch-Gta-Self-Drive\\PyTorch-Explore-Models\\VehicleSpeedLog.txt";
-            logFile = new StreamWriter(logPath, true); // Append to the log file
+            string logPath = "C:\\GitRepo1\\PyTorch-Gta-Self-Drive\\PyTorch-Explore-Models\\VehicleSpeedLog.txt"; // use your path here of course
+            logFile = new StreamWriter(logPath, true);
             logFile.AutoFlush = true;
         }
         catch (Exception ex)
         {
-            GTA.UI.Notification.Show("Error setting up logging: " + ex.Message);  // Corrected Notify to Notification.Show
+            GTA.UI.Notification.Show("Error setting up logging: " + ex.Message); 
         }
     }
 
@@ -38,7 +38,6 @@ public class SpeedLogger : Script
     {
         try
         {
-            // Check if the player's character is in a vehicle
             if (playerPed != null && playerPed.IsInVehicle())
             {
                 // logFile.WriteLine("Player in vehicle");
@@ -66,7 +65,7 @@ public class SpeedLogger : Script
         {
             logFile.WriteLine("Some error caught: " + ex.Message);
             logFile.WriteLine(ex.StackTrace);
-            GTA.UI.Notification.Show("Some error caught: " + ex.Message);  // Corrected Notify to Notification.Show
+            GTA.UI.Notification.Show("Some error caught: " + ex.Message);
         }
     }
 
@@ -94,7 +93,7 @@ public class SpeedLogger : Script
         playerPed = Game.Player.Character;
     }
 
-    private void OnAborted(object sender, EventArgs e) // Corrected Dispose with event handler
+    private void OnAborted(object sender, EventArgs e)
     {
         if (logFile != null)
         {
