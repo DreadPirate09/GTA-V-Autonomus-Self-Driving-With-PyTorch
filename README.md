@@ -19,11 +19,3 @@ Use the https://github.com/scripthookvdotnet to allow the logging script to run 
 This project requires the installation of `ScpVBus` if you intend on using the Virtual Controller object. It can be installed by following the below. 
 More information can be found at [ScpVBus](https://github.com/nefarius/ScpVBus).
 
-Open cmd.exe as administator
-cd in the correct `ScpVBus-x64` directory for your arcitechture
-Execute install.bat
-If successful you will receive the following message
-
-Device node created. Install is complete when drivers are installed...
-Updating drivers for Root\ScpVBus from {Location}\PYXInput\ScpVBus-x64\ScpVBus.inf.
-Drivers installed successfully.
