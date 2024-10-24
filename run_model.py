@@ -3,6 +3,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 from gta_v_driver_model import GTAVDriverModel
+from pilot import Pilot
 import mss
 import pygame
 
@@ -75,7 +76,7 @@ log_file_path = 'C:\\GitRepo1\\PyTorch-Gta-Self-Drive\\PyTorch-Explore-Models\\V
 # Initialize mss for screen capturing
 sct = mss.mss()
 mon = {'top': 0, 'left': 0, 'width': 800, 'height': 600}  # Modify based on your screen size
-
+driver = Pilot()
 # Main loop to capture frame, read speed, and run inference
 while True:
     # Capture frame from the game (same as data recorder)
@@ -86,6 +87,7 @@ while True:
     
     # Run inference using the frame and speed
     steering, throttle, brake = run_inference(model, sct_img, speed)
+    driver.sendIt(steering, throttle, brake)
     
     # Print the model's predictions
     print(f"Steering: {steering:.4f}, Throttle: {throttle:.4f}, Brake: {brake:.4f}")
