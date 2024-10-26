@@ -20,7 +20,7 @@ class GTAVDataset(Dataset):
     
     def __getitem__(self, idx):
         steering_angle = self.data.iloc[idx, 0]
-        throttle = self.data.iloc[idx, 1]
+        throttle = 1.0 - self.data.iloc[idx, 1]
         brake = self.data.iloc[idx, 2]
         speed = self.data.iloc[idx, 3]
         img_path = self.data.iloc[idx, 4]

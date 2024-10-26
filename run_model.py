@@ -61,7 +61,7 @@ def run_inference(model, frame, speed):
 log_speed_path = os.getcwd()+'\\VehicleSpeedLog.txt'
 
 sct = mss.mss()
-mon = {'top': 0, 'left': 0, 'width': 800, 'height': 600}
+mon = {'top': 0, 'left': 0, 'width': 1600, 'height': 1200}
 driver = Pilot()
 
 while True:
@@ -71,7 +71,7 @@ while True:
     speed = read_last_speed(log_speed_path)
     
     steering, throttle, brake = run_inference(model, sct_img, speed)
-    driver.sendIt(steering, throttle, brake)
+    driver.sendIt(steering, throttle, 1.0 - brake)
     
     print(f"Steering: {steering:.4f}, Throttle: {throttle:.4f}, Brake: {brake:.4f}")
 

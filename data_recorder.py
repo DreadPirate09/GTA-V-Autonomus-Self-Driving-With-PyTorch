@@ -4,9 +4,11 @@ import win32gui, win32api
 import os
 import sys
 import PIL
+import glob
 from PIL import Image
 import mss
 import pygame
+
 
 def read_last_line(file_path):
     with open(file_path, 'rb') as f:
@@ -28,13 +30,13 @@ samples_per_second=10
 if not os.path.exists(save_path):
     os.makedirs(save_path)
 
-csv_file = open(save_path + 'data.csv', 'w+')
+csv_file = open(save_path + 'data.csv', 'a+')
 
 print('Recording starts in 5 seconds...')
 time.sleep(5)
 print('Recording started!')
 
-current_sample=0
+current_sample = len(glob.glob(os.path.join('data', 'img*.bmp'))) if len(glob.glob(os.path.join('data', 'img*.bmp'))) != 0 else 0
 last_time=0
 start_time=time.time()
 wait_time=(1/samples_per_second)
@@ -51,7 +53,7 @@ sd = 0
 nk = 0
 
 sct = mss.mss()
-mon = {'top': 0, 'left': 0, 'width': 800, 'height': 600}
+mon = {'top': 0, 'left': 0, 'width': 1600, 'height': 1200}
 
 pause=False
 return_was_down=False
@@ -123,7 +125,6 @@ while True:
 		throttle=1-(throttle+1)/2
 			
 		brake=joysticks[0].get_axis(4) # break and reverse
-		print(brake)
 		if (brake > 0.98):
 			brake=1
 		brake=1-(brake+1)/2
