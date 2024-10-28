@@ -53,7 +53,7 @@ sd = 0
 nk = 0
 
 sct = mss.mss()
-mon = {'top': 0, 'left': 0, 'width': 1600, 'height': 1200}
+mon = {'top': 0, 'left': 0, 'width': 800, 'height': 600}
 
 pause=False
 return_was_down=False
