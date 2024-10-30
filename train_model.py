@@ -10,9 +10,8 @@ from torchvision import transforms
 from torch.utils.tensorboard import SummaryWriter
 
 class GTAVDataset(Dataset):
-    def __init__(self, csv_file, img_dir, transform=None):
+    def __init__(self, csv_file, transform=None):
         self.data = pd.read_csv(csv_file)
-        self.img_dir = img_dir
         self.transform = transform
     
     def __len__(self):
@@ -43,9 +42,8 @@ transform = transforms.Compose([
 ])
 
 csv_file = 'data/data.csv'
-img_dir = 'data/'
 
-dataset = GTAVDataset(csv_file=csv_file, img_dir=img_dir, transform=transform)
+dataset = GTAVDataset(csv_file=csv_file, transform=transform)
 dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -54,7 +52,7 @@ model = GTAVDriverModel().to(device)
 criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=1e-4)
 
-writer = SummaryWriter(log_dir='runs/gtav_driver3')
+writer = SummaryWriter(log_dir='runs/gtav_driver5')
 
 num_epochs = 10
 for epoch in range(num_epochs):

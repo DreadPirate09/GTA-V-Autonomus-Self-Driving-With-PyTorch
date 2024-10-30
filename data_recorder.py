@@ -2,6 +2,7 @@ import time
 import csv
 import win32gui, win32api
 import os
+import re
 import sys
 import PIL
 import glob
@@ -24,7 +25,7 @@ else:
 	save_path=sys.argv[1] + '/'
 	speed_fil_path=sys.argv[2]
 
-max_samples=100000
+max_samples=200000
 samples_per_second=10
 
 if not os.path.exists(save_path):
@@ -36,7 +37,8 @@ print('Recording starts in 5 seconds...')
 time.sleep(5)
 print('Recording started!')
 
-current_sample = len(glob.glob(os.path.join('data', 'img*.bmp'))) if len(glob.glob(os.path.join('data', 'img*.bmp'))) != 0 else 0
+current_sample = max([int(re.findall(r'\d+',l)[0]) for l in glob.glob(os.path.join('data', 'img*.bmp'))]) + 1
+
 last_time=0
 start_time=time.time()
 wait_time=(1/samples_per_second)
