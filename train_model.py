@@ -44,15 +44,15 @@ transform = transforms.Compose([
 csv_file = 'data/data.csv'
 
 dataset = GTAVDataset(csv_file=csv_file, transform=transform)
-dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = GTAVDriverModel().to(device)
 
 criterion = nn.MSELoss()
-optimizer = optim.Adam(model.parameters(), lr=1e-4)
+optimizer = optim.Adam(model.parameters(), lr=5e-5)
 
-writer = SummaryWriter(log_dir='runs/gtav_driver5')
+writer = SummaryWriter(log_dir='runs/gtav_driver11')
 
 num_epochs = 10
 for epoch in range(num_epochs):

@@ -71,6 +71,6 @@ while True:
     speed = read_last_speed(log_speed_path)
     
     steering, throttle, brake = run_inference(model, sct_img, speed)
-    driver.sendIt(steering , throttle, 0)
+    driver.sendIt(steering , throttle, 0, speed)
 
 
