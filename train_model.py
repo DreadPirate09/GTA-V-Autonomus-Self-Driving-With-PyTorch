@@ -29,8 +29,9 @@ class GTAVDataset(Dataset):
         if self.transform:
             image = self.transform(image)
 
-        labels = torch.tensor([steering_angle, throttle, brake], dtype=torch.float32)
-        
+        # labels = torch.tensor([steering_angle, throttle, brake], dtype=torch.float32)
+        labels = torch.tensor([steering_angle, throttle], dtype=torch.float32)
+
         features = torch.cat([torch.tensor([speed], dtype=torch.float32), image.flatten()])
         
         return features, labels
@@ -52,7 +53,7 @@ model = GTAVDriverModel().to(device)
 criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=5e-5)
 
-writer = SummaryWriter(log_dir='runs/gtav_driver11')
+writer = SummaryWriter(log_dir='runs/gtav_driver12')
 
 num_epochs = 10
 for epoch in range(num_epochs):
