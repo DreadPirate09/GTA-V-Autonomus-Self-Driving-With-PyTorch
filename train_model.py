@@ -51,9 +51,9 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = GTAVDriverModel().to(device)
 
 criterion = nn.MSELoss()
-optimizer = optim.Adam(model.parameters(), lr=5e-5)
+optimizer = optim.Adam(model.parameters(), lr=1e-4)
 
-writer = SummaryWriter(log_dir='runs/gtav_driver12')
+writer = SummaryWriter(log_dir='runs/gtav_driver13')
 
 num_epochs = 10
 for epoch in range(num_epochs):
