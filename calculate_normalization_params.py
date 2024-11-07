@@ -27,7 +27,7 @@ class CustomDataset(Dataset):
     def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
         self.transform = transform
-        self.image_files = [f for f in os.listdir(root_dir) if f.endswith('.bmp')]
+        self.image_files = [f for f in os.listdir(root_dir) if f.endswith('000.bmp')] # take just a part from the files , just the thousands that divide 1k
 
     def __len__(self):
         return len(self.image_files)
