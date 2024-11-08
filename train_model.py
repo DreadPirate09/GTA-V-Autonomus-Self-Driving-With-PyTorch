@@ -8,6 +8,7 @@ from gta_v_driver_model import GTAVDriverModel
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from torch.utils.tensorboard import SummaryWriter
+from calculate_normalization_params import mean,std
 
 class GTAVDataset(Dataset):
     def __init__(self, csv_file, transform=None):
@@ -39,7 +40,7 @@ class GTAVDataset(Dataset):
 transform = transforms.Compose([
     transforms.Resize((160, 640)),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    transforms.Normalize(mean=mean, std=std)
 ])
 
 csv_file = 'data/data.csv'
@@ -51,9 +52,9 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = GTAVDriverModel().to(device)
 
 criterion = nn.MSELoss()
-optimizer = optim.Adam(model.parameters(), lr=1e-4)
+optimizer = optim.Adam(model.parameters(), lr=5e-5)
 
-writer = SummaryWriter(log_dir='runs/gtav_driver13')
+writer = SummaryWriter(log_dir='runs/gtav_driver15')
 
 num_epochs = 10
 for epoch in range(num_epochs):

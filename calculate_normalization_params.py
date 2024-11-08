@@ -8,13 +8,13 @@ import time
 
 def loading_message():
     while not done:
-        print("Loading, compute on a big dataset...", end="\r")
+        print("Loading, compute the mean and std on a big dataset...", end="\r")
         time.sleep(0.5)
-        print("Loading, compute on a big dataset.. ", end="\r")
+        print("Loading, compute the mean and std on a big dataset.. ", end="\r")
         time.sleep(0.5)
-        print("Loading, compute on a big dataset. ", end="\r")
+        print("Loading, compute the mean and std on a big dataset. ", end="\r")
         time.sleep(0.5)
-        print("Loading, compute on a big dataset    ", end="\r")
+        print("Loading, compute the mean and std on a big dataset    ", end="\r")
         time.sleep(0.5)
 
 done = False

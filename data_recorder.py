@@ -25,7 +25,7 @@ else:
 	save_path=sys.argv[1] + '/'
 	speed_fil_path=sys.argv[2]
 
-max_samples=300000
+max_samples=380000
 samples_per_second=10
 
 if not os.path.exists(save_path):
