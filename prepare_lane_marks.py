@@ -1,7 +1,10 @@
 import os
+import cv2
 from PIL import Image
 import torch
 from u_net_model import UNET
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
 import numpy as np
 
 
@@ -52,8 +55,9 @@ for f in files:
 	mask = resized_mask == 1
 	org_img[150:150 + mask.shape[0], :, 0] = np.where(mask, 0, org_img[150:150 + mask.shape[0], :, 0])
 	org_img[150:150 + mask.shape[0], :, 1] = np.where(mask, 255, org_img[150:150 + mask.shape[0], :, 1])
-	image_array = np.transpose(org_img, (1, 0, 2))
+	to_save = Image.fromarray(org_img)
 	######
+	to_save.save(DATA_FOLDER+f.replace("img","gmi"))
 	os.remove(DATA_FOLDER+f)
 
 print(files)
