@@ -25,7 +25,7 @@ else:
 	save_path=sys.argv[1] + '/'
 	speed_fil_path=sys.argv[2]
 
-max_samples=380000
+max_samples=450000
 samples_per_second=10
 
 if not os.path.exists(save_path):
@@ -37,7 +37,7 @@ print('Recording starts in 5 seconds...')
 time.sleep(5)
 print('Recording started!')
 
-current_sample = max([int(re.findall(r'\d+',l)[0]) for l in glob.glob(os.path.join('data', 'img*.bmp'))]) + 1
+current_sample = 0 if len(os.listdir('data')) == 1 else max([int(re.findall(r'\d+',l)[0]) for l in glob.glob(os.path.join('data', 'img*.bmp'))]) + 1
 
 last_time=0
 start_time=time.time()
