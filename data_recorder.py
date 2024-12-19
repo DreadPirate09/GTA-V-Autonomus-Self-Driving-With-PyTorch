@@ -110,7 +110,7 @@ while True:
 		sct_img = sct.grab(mon)
 		img = Image.frombytes('RGB', sct_img.size, sct_img.rgb)
 		img = img.resize((640, 360), PIL.Image.BICUBIC)
-		img = img.crop(box=(0, 200, 640, 360))
+		# img = img.crop(box=(0, 150, 640, 360))
 		
 		steering_angle=joysticks[0].get_axis(0)
 		if (abs(steering_angle) < 0.008):
