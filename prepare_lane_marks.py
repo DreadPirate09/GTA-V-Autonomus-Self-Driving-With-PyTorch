@@ -53,11 +53,22 @@ for f in files:
 	mask_np = preds.squeeze().cpu().numpy()
 	resized_mask = cv2.resize(mask_np, (640, 210), interpolation=cv2.INTER_NEAREST)
 	mask = resized_mask == 1
+	neg_mask = mask == 0
+	map_crop = Image.fromarray(org_img).crop(box=(24, 305, 116, 360))
 	org_img[150:150 + mask.shape[0], :, 0] = np.where(mask, 0, org_img[150:150 + mask.shape[0], :, 0])
 	org_img[150:150 + mask.shape[0], :, 1] = np.where(mask, 255, org_img[150:150 + mask.shape[0], :, 1])
+	org_img[150:150 + mask.shape[0], :, 0] = np.where(neg_mask, 0, org_img[150:150 + mask.shape[0], :, 0])
+	org_img[150:150 + mask.shape[0], :, 1] = np.where(neg_mask, 0, org_img[150:150 + mask.shape[0], :, 1])
+	org_img[150:150 + mask.shape[0], :, 2] = np.where(neg_mask, 0, org_img[150:150 + mask.shape[0], :, 2])
+
 	to_save = Image.fromarray(org_img)
+	_, map_height = map_crop.size
+	to_save_width, to_save_height = to_save.size
 	######
-	to_save.save(DATA_FOLDER+f.replace("img","gmi"))
+	map_paste_coords = (0, to_save_height - map_height)
+	to_save.paste(map_crop, map_paste_coords)
+	to_save = to_save.crop(box=(0,150, to_save_width, to_save_height))
 	os.remove(DATA_FOLDER+f)
+	to_save.save(DATA_FOLDER+f)
 
 print(files)
