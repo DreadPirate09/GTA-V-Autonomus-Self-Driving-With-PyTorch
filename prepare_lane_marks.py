@@ -54,9 +54,10 @@ for f in files:
 	resized_mask = cv2.resize(mask_np, (640, 210), interpolation=cv2.INTER_NEAREST)
 	mask = resized_mask == 1
 	neg_mask = mask == 0
-	map_crop = Image.fromarray(org_img).crop(box=(24, 305, 116, 360))
+	map_crop = Image.fromarray(org_img).crop(box=(0, 305, 140, 360))
 	org_img[150:150 + mask.shape[0], :, 0] = np.where(mask, 0, org_img[150:150 + mask.shape[0], :, 0])
 	org_img[150:150 + mask.shape[0], :, 1] = np.where(mask, 255, org_img[150:150 + mask.shape[0], :, 1])
+	org_img[150:150 + mask.shape[0], :, 2] = np.where(mask, 0, org_img[150:150 + mask.shape[0], :, 2])
 	org_img[150:150 + mask.shape[0], :, 0] = np.where(neg_mask, 0, org_img[150:150 + mask.shape[0], :, 0])
 	org_img[150:150 + mask.shape[0], :, 1] = np.where(neg_mask, 0, org_img[150:150 + mask.shape[0], :, 1])
 	org_img[150:150 + mask.shape[0], :, 2] = np.where(neg_mask, 0, org_img[150:150 + mask.shape[0], :, 2])
