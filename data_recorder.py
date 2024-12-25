@@ -37,22 +37,12 @@ print('Recording starts in 5 seconds...')
 time.sleep(5)
 print('Recording started!')
 
-current_sample = 0 if len(os.listdir('data')) == 1 else max([int(re.findall(r'\d+',l)[0]) for l in glob.glob(os.path.join('data', 'img*.bmp'))]) + 1
+current_sample = 0 if len(os.listdir('data')) == 1 else max([int(re.findall(r'\d+',l)[0]) for l in glob.glob(os.path.join('data', 'filtered*.bmp'))]) + 1
 
 last_time=0
 start_time=time.time()
 wait_time=(1/samples_per_second)
 stats_frame=0
-
-w = 0
-a = 0
-s = 0
-d = 0
-wa = 0
-wd = 0
-sa = 0
-sd = 0
-nk = 0
 
 sct = mss.mss()
 mon = {'top': 0, 'left': 0, 'width': 800, 'height': 600}

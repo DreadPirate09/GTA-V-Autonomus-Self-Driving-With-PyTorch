@@ -32,7 +32,7 @@ transform = A.Compose(
 	)
 
 
-files = [x for x in os.listdir('data') if ".bmp" in x]
+files = [x for x in os.listdir('data') if "img" in x]
 
 for f in files:
 	img = Image.open(DATA_FOLDER+f)
@@ -70,6 +70,6 @@ for f in files:
 	to_save.paste(map_crop, map_paste_coords)
 	to_save = to_save.crop(box=(0,150, to_save_width, to_save_height))
 	os.remove(DATA_FOLDER+f)
-	to_save.save(DATA_FOLDER+f)
+	to_save.save(DATA_FOLDER+f.replace("img","filtered"))
 
 print(files)
