@@ -1,0 +1,8 @@
+300k_64bs_5e-5lr/
+VehicleSpeedLog.txt
+__pycache__/
+data/
+gtav_driver_model.pth
+my_checkpoint.pth.tar
+output/
+runs/
