@@ -121,7 +121,7 @@ while True:
 			brake=1
 		brake=1-(brake+1)/2
 					
-		path = save_path + 'img%d.bmp' % current_sample
+		path = save_path + 'filtered%d.bmp' % current_sample
 		print((steering_angle, throttle, brake, speed, path))
 		img.save(path, 'BMP')
 		csv_file.write('%f,%f,%f,%s,%s\n' % (steering_angle, throttle, brake, speed, path))
