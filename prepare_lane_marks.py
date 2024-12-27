@@ -6,6 +6,25 @@ from u_net_model import UNET
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 import numpy as np
+import threading
+import time
+
+
+def loading_message():
+    while not done:
+        print("Loading, prepare the lane marks by applying the unet model to the existing dataset...", end="\r")
+        time.sleep(0.5)
+        print("Loading, prepare the lane marks by applying the unet model to the existing dataset.. ", end="\r")
+        time.sleep(0.5)
+        print("Loading, prepare the lane marks by applying the unet model to the existing dataset. ", end="\r")
+        time.sleep(0.5)
+        print("Loading, prepare the lane marks by applying the unet model to the existing dataset   ", end="\r")
+        time.sleep(0.5)
+
+done = False
+thread = threading.Thread(target=loading_message)
+thread.start()
+
 
 
 
@@ -32,7 +51,7 @@ transform = A.Compose(
 	)
 
 
-files = [x for x in os.listdir('data') if "img" in x]
+files = [x for x in os.listdir('data') if "filtered" in x and int(x.replace("filtered","").replace(".bmp","")) > 5888 and int(x.replace("filtered","").replace(".bmp","")) < 10000]
 
 for f in files:
 	img = Image.open(DATA_FOLDER+f)
@@ -70,6 +89,8 @@ for f in files:
 	to_save.paste(map_crop, map_paste_coords)
 	to_save = to_save.crop(box=(0,150, to_save_width, to_save_height))
 	os.remove(DATA_FOLDER+f)
-	to_save.save(DATA_FOLDER+f.replace("img","filtered"))
+	to_save.save(DATA_FOLDER+f)
 
-print(files)
+done = True
+thread.join()
+print("Lane marks extraction successfully done")

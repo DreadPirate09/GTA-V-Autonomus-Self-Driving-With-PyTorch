@@ -27,7 +27,7 @@ class CustomDataset(Dataset):
     def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
         self.transform = transform
-        self.image_files = [f for f in os.listdir(root_dir) if f.endswith('000.bmp')] # take just a part from the files , just the thousands that divide 1k
+        self.image_files = [f for f in os.listdir(root_dir) if f.endswith('bmp')] # take just a part from the files , just the thousands that divide 1k
 
     def __len__(self):
         return len(self.image_files)
@@ -49,7 +49,7 @@ transform = transforms.Compose([
 dataset = CustomDataset(root_dir=path_dir, transform=transform)
 dataloader = DataLoader(dataset, batch_size=64, shuffle=False)
 
-def calculate_mean_std(dataloader):
+def calculate_mean_std(dataloader, max_samples=100):
     mean = 0.0
     std = 0.0
     total_images_count = 0
@@ -60,6 +60,8 @@ def calculate_mean_std(dataloader):
         mean += images.mean(2).sum(0)
         std += images.std(2).sum(0)
         total_images_count += batch_images_count
+        if total_images_count > max_samples:
+            break
 
     mean /= total_images_count
     std /= total_images_count

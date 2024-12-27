@@ -54,7 +54,7 @@ model = GTAVDriverModel().to(device)
 criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=5e-5)
 
-writer = SummaryWriter(log_dir='runs/gtav_driver1')
+writer = SummaryWriter(log_dir='runs/gtav_driver2')
 
 num_epochs = 10
 for epoch in range(num_epochs):
