@@ -13,8 +13,7 @@ import mss
 import pygame
 import keyboard
 
-global save_sample_flg
-###################################################################
+#################################################################################
 
 BATCH = 10
 IMAGE_HEIGHT = 160
@@ -37,7 +36,7 @@ transform_u_net = A.Compose(
         ]
     )
 
-####################################################################
+##################################################################################
 
 model = GTAVDriverModel().to(DEVICE)
 model.load_state_dict(torch.load('gtav_driver_model.pth'))
@@ -48,6 +47,8 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
+
+##################################################################################
 
 def read_last_speed(log_file_path):
 
@@ -96,12 +97,6 @@ def preprocess_frame(frame):
     to_save = to_save.crop(box=(0,150, to_save_width, to_save_height))
 
     transformed_image = transform(to_save)
-
-    if save_sample_flg == 0:
-        pil_sample = Image.fromarray(transformed_image)
-        pil_sample.save("sample.bmp")
-        save_sample_flg = 1
-
 
     return transformed_image
 
