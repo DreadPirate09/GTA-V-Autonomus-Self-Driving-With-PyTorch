@@ -27,7 +27,6 @@ class GTAVDriverModel(nn.Module):
         self.fc3 = nn.Linear(4096, 3072)
         self.fc4 = nn.Linear(3072, 2048)
         self.fc5 = nn.Linear(2048, 1024)
-        # self.fc_output = nn.Linear(1024, 3)  
         self.fc_output = nn.Linear(1024, 2)  
 
         self.dropout = nn.Dropout(p=0.5)
