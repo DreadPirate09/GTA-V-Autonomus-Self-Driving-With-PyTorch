@@ -6,10 +6,9 @@ TRAIN_DATA_FILE = "data/data.csv"
 
 class Pilot(object):
 
-    def __init__(self,name='Bob',percent=True,max_throttle=1.0):
+    def __init__(self,name='Bob',percent=True):
         self.name = name
         self.controller = pyxinput.vController(percent=True)
-        self.max_throttle = max_throttle
         self.avg_speed = self.getAvgSpeed()
 
     def sendIt(self, steering, throttle, brake, speed):
@@ -20,8 +19,6 @@ class Pilot(object):
             throttle = 0.75
         if speed > self.avg_speed:
             throttle = throttle / 3.0
-        # if throttle > self.max_throttle:
-        #     throttle = self.max_throttle
 
         steering = steering * 1.9
         self.controller.set_value('AxisLx', steering) 
@@ -29,6 +26,19 @@ class Pilot(object):
         self.controller.set_value('TriggerL', brake) 
 
         print(f"Steering: {steering}, Throttle: {throttle}, Brake: {brake}")
+
+    def resetController(self):
+        self.controller.set_value('AxisLx', 0.0)
+        self.controller.set_value('TriggerR', 0.0) 
+        self.controller.set_value('TriggerL', 0.0) 
+
+    def pullHandBreak(self):
+        self.controller.set_value('TriggerL', 1.0)
+        time.sleep(0.5)
+        self.controller.set_value('TriggerL',0.0)
+
+    def releaseHandBreak(self):
+        self.controller.set_value('TriggerL', 0.0)
 
     def getAvgSpeed(self):
         data = pd.read_csv(TRAIN_DATA_FILE)
