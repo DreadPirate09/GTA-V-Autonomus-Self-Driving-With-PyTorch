@@ -9,9 +9,9 @@ class Pilot(object):
     def __init__(self,name='Bob',percent=True):
         self.name = name
         self.controller = pyxinput.vController(percent=True)
-        self.avg_speed = self.getAvgSpeed()
+        self.avg_speed = self._get_avg_speed()
 
-    def sendIt(self, steering, throttle, brake, speed):
+    def send_it(self, steering, throttle, brake, speed):
         steering = steering*2.0 - 1.0
         if throttle < 0.25 and abs(steering) < 0.3:
             throttle = 0.30
@@ -27,20 +27,20 @@ class Pilot(object):
 
         print(f"Steering: {steering}, Throttle: {throttle}, Brake: {brake}")
 
-    def resetController(self):
+    def reset_controller(self):
         self.controller.set_value('AxisLx', 0.0)
         self.controller.set_value('TriggerR', 0.0) 
         self.controller.set_value('TriggerL', 0.0) 
 
-    def pullHandBreak(self):
+    def pull_hand_break(self):
         self.controller.set_value('TriggerL', 1.0)
         time.sleep(0.5)
         self.controller.set_value('TriggerL',0.0)
 
-    def releaseHandBreak(self):
+    def release_hand_break(self):
         self.controller.set_value('TriggerL', 0.0)
 
-    def getAvgSpeed(self):
+    def _get_avg_speed(self):
         data = pd.read_csv(TRAIN_DATA_FILE)
         avg_speed = sum([data.iloc[x,3] for x in range(len(data))])/len(data)
 

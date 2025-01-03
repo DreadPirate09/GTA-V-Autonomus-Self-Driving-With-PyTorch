@@ -19,8 +19,9 @@ Use the https://github.com/scripthookvdotnet to allow the logging script to run 
 This project requires the installation of `ScpVBus` if you intend on using the Virtual Controller object. It can be installed by following the below. 
 More information can be found at [ScpVBus](https://github.com/nefarius/ScpVBus).
 
-Along with the development of the https://github.com/DreadPirate09/Semantic-Segmentation-For-Road-Detection ,We can use now just the features of the lane marks + the minimap for a more accurate control of the car inside the road lanes.
-We have now a script that will prepare the datasets extracting the lane marks using the pretrained u-net model after which we will train our old model.
+Along with the work we've put on https://github.com/DreadPirate09/Semantic-Segmentation-For-Road-Detection (leave a star pls)
+we can use now just the features of the lane marks + the minimap for a more accurate control of the car inside the road lanes.
+We have now a script that will prepare the dataset, extracting the lane marks using the pretrained u-net model after which we will train our base model.
 Here is a sample from the new dataset of images.
 
-![Sample ](README/lane_marks_features.png.bmp)
+![Sample ](README/lane_marks_features.bmp)

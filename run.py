@@ -129,17 +129,17 @@ while True:
         sct_img = sct.grab(mon)
         speed = read_last_speed(log_speed_path)
         steering, throttle = run_inference(model, sct_img, speed)
-        driver.sendIt(steering , throttle, 0, speed)
+        driver.send_it(steering , throttle, 0, speed)
 
     if (win32api.GetAsyncKeyState(0x0D)&0x8001 > 0):
         if (return_was_down == False):
             if (pause == False):
                 pause = True
-                driver.resetController()
-                driver.pullHandBreak()
+                driver.reset_controller()
+                driver.pull_hand_break()
             else:
                 pause = False
-                driver.releaseHandBreak()
+                driver.release_hand_break()
                 
         return_was_down = True
     else:
