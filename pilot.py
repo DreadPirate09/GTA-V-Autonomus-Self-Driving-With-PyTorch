@@ -25,7 +25,7 @@ class Pilot(object):
         self.controller.set_value('TriggerR', throttle) 
         self.controller.set_value('TriggerL', brake) 
 
-        print(f"Steering: {steering}, Throttle: {throttle}, Brake: {brake}")
+        print(f"Steering: {steering:.4f}, Throttle: {throttle:.4f}")
 
     def resetController(self):
         self.controller.set_value('AxisLx', 0.0)

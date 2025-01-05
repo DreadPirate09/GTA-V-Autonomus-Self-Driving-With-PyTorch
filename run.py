@@ -103,9 +103,7 @@ def preprocess_frame(frame):
 def run_inference(model, frame, speed):
 
     frame_tensor = preprocess_frame(frame).unsqueeze(0).to(DEVICE)
-    
     speed_tensor = torch.tensor([[speed]], dtype=torch.float32).to(DEVICE)
-    
     model_input = torch.cat((speed_tensor, frame_tensor.flatten(start_dim=1)), dim=1)
 
     with torch.no_grad():
