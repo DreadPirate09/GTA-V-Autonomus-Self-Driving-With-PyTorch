@@ -16,7 +16,6 @@ import keyboard
 
 #################################################################################
 
-BATCH = 10
 IMAGE_HEIGHT = 160
 IMAGE_WIDTH = 240
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -135,6 +134,7 @@ while True:
                 pause = True
                 driver.resetController()
                 driver.pullHandBreak()
+                print("Pause")
             else:
                 pause = False
                 driver.releaseHandBreak()

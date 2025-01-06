@@ -15,7 +15,7 @@ class Pilot(object):
         steering = steering*2.0 - 1.0
         if throttle < 0.25 and abs(steering) < 0.3:
             throttle = 0.30
-        if speed < 30 and throttle < 0.65 and abs(steering) < 0.3:
+        if speed < 45 and throttle < 0.65 and abs(steering) < 0.3:
             throttle = 0.75
         if speed > self.avg_speed:
             throttle = throttle / 3.0
@@ -25,7 +25,7 @@ class Pilot(object):
         self.controller.set_value('TriggerR', throttle) 
         self.controller.set_value('TriggerL', brake) 
 
-        print(f"Steering: {steering:.4f}, Throttle: {throttle:.4f}")
+        print(f"steering wheel angle: {steering:.4f}, power: {throttle:.4f}, km/h: {speed}")
 
     def resetController(self):
         self.controller.set_value('AxisLx', 0.0)
