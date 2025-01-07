@@ -23,4 +23,4 @@ Along with the development of the https://github.com/DreadPirate09/Semantic-Segm
 We have now a script that will prepare the datasets extracting the lane marks using the pretrained u-net model after which we will train our old model.
 Here is a sample from the new dataset of images.
 
-![Sample ](README/lane_marks_features.png)
+![Sample ](README/lane_marks_features.png) 
