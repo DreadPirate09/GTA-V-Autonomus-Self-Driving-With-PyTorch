@@ -28,4 +28,4 @@ Here is a sample from the new dataset of images
 
 The demo can be seen here https://www.youtube.com/watch?v=FZPI0VHArDQ&ab_channel=GeorgianDanciu
 
-[Demo](README/demo.gif)
+<img src="README/demo.gif" width="250" height="250"/>
