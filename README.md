@@ -24,8 +24,12 @@ We have now a script that will prepare the datasets extracting the lane marks us
 
 Here is a sample from the new dataset of images
 
-![Sample ](README/lane_marks_features.bmp) 
+<p align="center">
+  <img src="README/lane_marks_features.bmp" />
+</p>
 
 The demo can be seen here https://www.youtube.com/watch?v=FZPI0VHArDQ&ab_channel=GeorgianDanciu
 
-<img src="README/demo.gif" width="250" height="250"/>
+<p align="center">
+  <img src="README/demo.gif" width="250" height="250"/>
+</p>
